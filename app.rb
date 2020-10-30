@@ -1,9 +1,14 @@
 f = File.open 'file.txt', 'r'
 
-  hh = {}
+  @hh = {}
 
   def add_to_hash word
-    puts word
+    word.downcase!
+
+    cnt = @hh[word].to_i
+    cnt += 1
+
+    @hh[word] = cnt
   end
 
   f.each_line do |line|
@@ -19,3 +24,7 @@ f = File.open 'file.txt', 'r'
   end
 
 f.close
+
+@hh.each do |k, v|
+  puts "Key: #{k}, Value: #{v}"
+end
